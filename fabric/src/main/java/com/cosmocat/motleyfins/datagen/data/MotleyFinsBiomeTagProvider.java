@@ -20,6 +20,5 @@ public class MotleyFinsBiomeTagProvider extends FabricTagProvider.FabricValueLoo
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
         valueLookupBuilder(MotleyFinsTags.Biomes.SPAWNS_PARROTFISH)
-                .add(Biomes.WARM_OCEAN);
     }
 }
