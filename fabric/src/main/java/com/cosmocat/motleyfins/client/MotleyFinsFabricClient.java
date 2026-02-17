@@ -10,11 +10,11 @@ import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 
 @Environment(EnvType.CLIENT)
-public class MotleyFinsFabricClient  implements ClientModInitializer {
+public class MotleyFinsFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        EntityRendererRegistry.register(MotleyFinsEntities.PARROTFISH.get(), (context) -> new ParrotfishRenderer(context));
+        EntityRendererRegistry.register(MotleyFinsEntities.PARROTFISH.get(), ParrotfishRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ParrotfishModel.PARROTFISH_LAYER, ParrotfishModel::createBodyLayer);
     }
 }

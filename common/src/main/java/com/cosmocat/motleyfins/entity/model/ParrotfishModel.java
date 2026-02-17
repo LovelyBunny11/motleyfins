@@ -10,8 +10,9 @@ import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.model.geom.PartPose;
 import net.minecraft.client.model.geom.builders.*;
 import net.minecraft.resources.Identifier;
+import org.jetbrains.annotations.NotNull;
 
-public class ParrotfishModel extends EntityModel<ParrotfishRenderState> {
+public class ParrotfishModel extends EntityModel<@NotNull ParrotfishRenderState> {
     public static final ModelLayerLocation PARROTFISH_LAYER = new ModelLayerLocation(Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID, "parrotfish"), "main");
 
     private final ModelPart root;

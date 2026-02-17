@@ -1,6 +1,7 @@
 package com.cosmocat.motleyfins.registry;
 
 import net.minecraft.core.component.DataComponentType;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -26,7 +27,11 @@ public class MotleyFinsRegistries {
         throw new AssertionError();
     }
 
-    public static <T> Supplier<DataComponentType<T>> registerComponentType(String name, UnaryOperator<DataComponentType.Builder<T>> builder) {
+    public static <T> Supplier<DataComponentType<@NotNull T>> registerComponentType(String name, UnaryOperator<DataComponentType.Builder<@NotNull T>> builder) {
+        throw new AssertionError();
+    }
+
+    public static <T extends SoundEvent> Supplier<@NotNull T> registerSoundEvent(String name, Supplier<T> soundEvent) {
         throw new AssertionError();
     }
 }

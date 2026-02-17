@@ -10,7 +10,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 
 @EventBusSubscriber(modid = MotleyFins.MOD_ID, value = Dist.CLIENT)
-public class ClientEvents {
+public class MotleyFinsClientEvents {
 
     @SubscribeEvent
     public static void registerModelLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {

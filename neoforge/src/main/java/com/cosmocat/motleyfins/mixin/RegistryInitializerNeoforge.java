@@ -6,6 +6,7 @@ import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -47,5 +48,11 @@ public class RegistryInitializerNeoforge {
     @Overwrite
     public static <T> Supplier<DataComponentType<@NotNull T>> registerComponentType(String name, UnaryOperator<DataComponentType.Builder<@NotNull T>> builder) {
         return DATA_COMPONENTS.registerComponentType(name, builder);
+    }
+
+    @Deprecated
+    @Overwrite
+    public static <T extends SoundEvent> Supplier<@NotNull T> registerSoundEvent(String name, Supplier<T> soundEvent) {
+        return SOUND_EVENTS.register(name, soundEvent);
     }
 }

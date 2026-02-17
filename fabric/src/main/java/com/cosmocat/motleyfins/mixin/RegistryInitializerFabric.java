@@ -8,6 +8,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
@@ -57,5 +58,12 @@ public class RegistryInitializerFabric {
         ResourceKey<@NotNull DataComponentType<?>> key = ResourceKey.create(Registries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID, name));
         DataComponentType<@NotNull T> dataComponentType = Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, key, builder.apply(DataComponentType.builder()).build());
         return () -> dataComponentType;
+    }
+
+    @Deprecated
+    @Overwrite
+    public static <T extends SoundEvent> Supplier<@NotNull T> registerSoundEvent(String name, Supplier<T> soundEvent) {
+        ResourceKey<@NotNull SoundEvent> key = ResourceKey.create(Registries.SOUND_EVENT, Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID, name));
+        return () -> Registry.register(BuiltInRegistries.SOUND_EVENT, key, soundEvent.get());
     }
 }

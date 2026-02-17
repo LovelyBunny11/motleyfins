@@ -15,6 +15,7 @@ public class MotleyFinsFabric implements ModInitializer {
     public void onInitialize() {
         MotleyFins.init();
         FabricDefaultAttributeRegistry.register(MotleyFinsEntities.PARROTFISH.get(), Parrotfish.createMobAttributes());
-        BiomeModifications.addSpawn(BiomeSelectors.tag(MotleyFinsTags.Biomes.SPAWNS_PARROTFISH), MobCategory.WATER_AMBIENT, MotleyFinsEntities.PARROTFISH.get(), 1, 1, 4);
+
+        BiomeModifications.addSpawn(BiomeSelectors.tag(MotleyFinsTags.Biomes.SPAWNS_PARROTFISH), MobCategory.WATER_AMBIENT, MotleyFinsEntities.PARROTFISH.get(), 25, 3, 6);
     }
 }
