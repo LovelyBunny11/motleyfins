@@ -19,6 +19,6 @@ public class MotleyFinsClientEvents {
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(MotleyFinsEntities.PARROTFISH.get(), ParrotfishRenderer::new);
+        event.registerEntityRenderer(MotleyFinsEntities.PARROTFISH, ParrotfishRenderer::new);
     }
 }

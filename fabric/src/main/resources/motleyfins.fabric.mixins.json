@@ -4,9 +4,7 @@
   "package": "com.cosmocat.motleyfins.mixin",
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "RegistryInitializerFabric"
-  ],
+  "mixins": [],
   "client": [
     "BlockModelGeneratorsMixin"
   ],

@@ -19,16 +19,16 @@ public class MotleyFinsItemTagProvider extends FabricTagProvider.ItemTagProvider
     @Override
     protected void addTags(HolderLookup.@NotNull Provider wrapperLookup) {
         valueLookupBuilder(ItemTags.SAND)
-                .addOptional(MotleyFinsBlocks.WHITE_SAND.get().asItem());
+                .addOptional(MotleyFinsBlocks.WHITE_SAND.asItem());
         valueLookupBuilder(ItemTags.STAIRS)
-                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_STAIRS.get().asItem())
-                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_STAIRS.get().asItem());
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_STAIRS.asItem())
+                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_STAIRS.asItem());
         valueLookupBuilder(ItemTags.SLABS)
-                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_SLAB.get().asItem())
-                .addOptional(MotleyFinsBlocks.CUT_WHITE_SANDSTONE_SLAB.get().asItem())
-                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_SLAB.get().asItem());
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_SLAB.asItem())
+                .addOptional(MotleyFinsBlocks.CUT_WHITE_SANDSTONE_SLAB.asItem())
+                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_SLAB.asItem());
         valueLookupBuilder(ItemTags.WALLS)
-                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_WALL.get().asItem());
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_WALL.asItem());
         valueLookupBuilder(MotleyFinsTags.Items.PARROTFISH_FOOD)
                 .add(Items.TUBE_CORAL_BLOCK)
                 .add(Items.BRAIN_CORAL_BLOCK)

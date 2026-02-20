@@ -19,14 +19,15 @@ public class MotleyFinsModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
-        blockStateModelGenerator.createTrivialCube(MotleyFinsBlocks.WHITE_SAND.get());
+        blockStateModelGenerator.createTrivialCube(MotleyFinsBlocks.WHITE_SAND);
         MotleyFinsBlockFamilies.getAllFamilies().filter(BlockFamily::shouldGenerateModel).forEach((blockFamily) -> blockStateModelGenerator.family(blockFamily.getBaseBlock()).generateFor(blockFamily));
     }
 
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
-        itemModelGenerator.generateFlatItem(MotleyFinsItems.PARROTFISH_SPAWN_EGG.get(), ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(MotleyFinsItems.PARROTFISH_BUCKET.get(), ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(MotleyFinsItems.PARROTFISH_SPAWN_EGG, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(MotleyFinsItems.PARROTFISH_BUCKET, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(MotleyFinsItems.PARROTFISH, ModelTemplates.FLAT_ITEM);
     }
 
     @Override

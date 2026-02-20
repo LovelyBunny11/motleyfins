@@ -3,9 +3,7 @@
   "minVersion": "0.8",
   "package": "com.cosmocat.motleyfins.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "RegistryInitializerNeoforge"
-  ],
+  "mixins": [],
   "client": [],
   "server": [],
   "injectors": {

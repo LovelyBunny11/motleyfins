@@ -27,6 +27,7 @@ public abstract class TropicalFishMixin extends AbstractSchoolingFish {
     static {
         ArrayList<TropicalFish.Variant> common_variants = new ArrayList<>(COMMON_VARIANTS);
         common_variants.removeIf((variant) -> variant.equals(new TropicalFish.Variant(TropicalFish.Pattern.DASHER, DyeColor.CYAN, DyeColor.YELLOW)));
+        common_variants.removeIf((variant) -> variant.equals(new TropicalFish.Variant(TropicalFish.Pattern.DASHER, DyeColor.CYAN, DyeColor.PINK)));
         COMMON_VARIANTS = List.copyOf(common_variants);
     }
 }

@@ -1,0 +1,33 @@
+{
+  "block.motleyfins.white_sand": "White Sand",
+  "block.motleyfins.white_sandstone": "White Sandstone",
+  "block.motleyfins.white_sandstone_stairs": "White Sandstone Stairs",
+  "block.motleyfins.white_sandstone_slab": "White Sandstone Slab",
+  "block.motleyfins.white_sandstone_wall": "White Sandstone Wall",
+  "block.motleyfins.chiseled_white_sandstone": "Chiseled White Sandstone",
+  "block.motleyfins.smooth_white_sandstone": "Smooth White Sandstone",
+  "block.motleyfins.smooth_white_sandstone_stairs": "Smooth White Sandstone Stairs",
+  "block.motleyfins.smooth_white_sandstone_slab": "Smooth White Sandstone Slab",
+  "block.motleyfins.cut_white_sandstone": "Cut White Sandstone",
+  "block.motleyfins.cut_white_sandstone_slab": "Cut White Sandstone Slab",
+
+  "item.motleyfins.parrotfish_bucket": "Bucket of Parrotfish",
+  "item.motleyfins.parrotfish": "Parrotfish",
+  "item.motleyfins.parrotfish_spawn_egg": "Parrotfish Spawn Egg",
+
+  "entity.motleyfins.parrotfish": "Parrotfish",
+  "entity.motleyfins.parrotfish.type.red": "Red",
+  "entity.motleyfins.parrotfish.type.blue": "Blue",
+  "entity.motleyfins.parrotfish.type.green": "Green",
+  "entity.motleyfins.parrotfish.type.cyan": "Cyan",
+  "entity.motleyfins.parrotfish.type.gray": "Gray",
+  "entity.motleyfins.parrotfish.type.tricolor": "Tricolor",
+  "entity.motleyfins.parrotfish.type.yellowtail": "Yellowtail",
+  "entity.motleyfins.parrotfish.type.stoplight": "Stoplight",
+
+  "motleyfins.subtitles.entity.parrotfish.ambient": "Parrotfish Gulps",
+  "motleyfins.subtitles.entity.parrotfish.eat": "Parrotfish Eats",
+  "motleyfins.subtitles.entity.parrotfish.flop": "Parrotfish Flops",
+  "motleyfins.subtitles.entity.parrotfish.hurt": "Parrotfish Hurts",
+  "motleyfins.subtitles.entity.parrotfish.death": "Parrotfish Dies"
+}

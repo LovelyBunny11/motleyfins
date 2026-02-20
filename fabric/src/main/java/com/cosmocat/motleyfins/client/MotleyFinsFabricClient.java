@@ -14,7 +14,7 @@ public class MotleyFinsFabricClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-        EntityRendererRegistry.register(MotleyFinsEntities.PARROTFISH.get(), ParrotfishRenderer::new);
+        EntityRendererRegistry.register(MotleyFinsEntities.PARROTFISH, ParrotfishRenderer::new);
         EntityModelLayerRegistry.registerModelLayer(ParrotfishModel.PARROTFISH_LAYER, ParrotfishModel::createBodyLayer);
     }
 }

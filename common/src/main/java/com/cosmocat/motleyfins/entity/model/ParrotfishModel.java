@@ -48,7 +48,7 @@ public class ParrotfishModel extends EntityModel<@NotNull ParrotfishRenderState>
         MeshDefinition meshdefinition = new MeshDefinition();
         PartDefinition partdefinition = meshdefinition.getRoot();
 
-        PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 20.7188F, -0.5313F));
+        PartDefinition root = partdefinition.addOrReplaceChild("root", CubeListBuilder.create(), PartPose.offset(0.0F, 18.7188F, -0.5313F));
 
         PartDefinition body = root.addOrReplaceChild("body", CubeListBuilder.create(), PartPose.offset(0.0F, 0.0F, 0.0F));
 
@@ -63,7 +63,7 @@ public class ParrotfishModel extends EntityModel<@NotNull ParrotfishRenderState>
 
         PartDefinition right_fin = body_front.addOrReplaceChild("right_fin", CubeListBuilder.create().texOffs(0, 30).addBox(0.0F, -1.0F, 0.0F, 0.0F, 2.0F, 5.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.0F, 0.5625F, 2.0625F, 0.0F, -0.3491F, 0.0F));
 
-        PartDefinition top_fin = body_front.addOrReplaceChild("top_fin", CubeListBuilder.create().texOffs(0, 19).addBox(0.0F, -2.0F, -4.0F, 0.0F, 2.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.4375F, 1.0625F));
+        PartDefinition top_fin = body_front.addOrReplaceChild("top_fin", CubeListBuilder.create().texOffs(0, 17).addBox(0.0F, -4.0F, -4.0F, 0.0F, 4.0F, 9.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -4.4375F, 1.0625F));
 
         PartDefinition body_back = body.addOrReplaceChild("body_back", CubeListBuilder.create().texOffs(28, 19).addBox(-1.0F, -2.0F, 0.0F, 2.0F, 4.0F, 3.0F, new CubeDeformation(0.0F)), PartPose.offset(0.0F, -0.7188F, 5.5313F));
 

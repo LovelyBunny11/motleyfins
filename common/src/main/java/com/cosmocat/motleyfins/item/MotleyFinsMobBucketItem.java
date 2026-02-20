@@ -29,7 +29,7 @@ public class MotleyFinsMobBucketItem extends MobBucketItem {
 
     @Override
     public void appendHoverText(@NotNull ItemStack stack, @NotNull TooltipContext context, @NotNull TooltipDisplay display, @NotNull Consumer<Component> tooltipComponents, @NotNull TooltipFlag flag) {
-        if (this.type == MotleyFinsEntities.PARROTFISH.get()) {
+        if (this.type == MotleyFinsEntities.PARROTFISH) {
             CustomData customdata = stack.getOrDefault(DataComponents.BUCKET_ENTITY_DATA, CustomData.EMPTY);
             if (customdata.isEmpty()) {
                 return;
@@ -39,7 +39,7 @@ public class MotleyFinsMobBucketItem extends MobBucketItem {
             if (optional.isPresent()) {
                 Parrotfish.Variant variant = Parrotfish.Variant.byId(optional.get().id());
 
-                tooltipComponents.accept(variant.displayName().plainCopy().withStyle(ChatFormatting.ITALIC, ChatFormatting.WHITE));
+                tooltipComponents.accept(variant.displayName().plainCopy().withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY));
             }
 
         }

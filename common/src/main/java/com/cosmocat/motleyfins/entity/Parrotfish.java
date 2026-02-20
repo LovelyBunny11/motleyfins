@@ -21,11 +21,13 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.ByIdMap;
 import net.minecraft.util.RandomSource;
 import net.minecraft.util.StringRepresentable;
+import net.minecraft.util.Util;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -51,9 +53,12 @@ import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.List;
 import java.util.function.IntFunction;
 
 public class Parrotfish extends AbstractSchoolingFish {
+
+    protected static final Parrotfish.Variant[] COMMON_VARIANTS = List.of(Variant.TRICOLOR, Variant.YELLOWTAIL, Variant.STOPLIGHT).toArray(Variant[]::new);
 
     public static final EntityDataAccessor<@NotNull Integer> DATA_TYPE_ID = SynchedEntityData.defineId(Parrotfish.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<@NotNull Boolean> IS_DROPPING_SAND = SynchedEntityData.defineId(Parrotfish.class, EntityDataSerializers.BOOLEAN);
@@ -97,7 +102,8 @@ public class Parrotfish extends AbstractSchoolingFish {
         if (this.isDroppingSand()) {
             ++this.sandDroppingTicks;
             if ((this.random.nextInt(0, 30) == 0)) {
-                this.drop(new ItemStack(MotleyFinsBlocks.WHITE_SAND.get().asItem()), true, true);
+                this.drop(new ItemStack(MotleyFinsBlocks.WHITE_SAND.asItem()), true, true);
+                this.playSound(SoundEvents.ITEM_PICKUP, 0.25F, 3.0F);
             } if (this.sandDroppingTicks > 200) {
                 this.setDroppingSand(false);
                 this.sandDroppingTicks = 0;
@@ -146,7 +152,7 @@ public class Parrotfish extends AbstractSchoolingFish {
                     this.setDroppingSand(true);
                     this.usePlayerItem(serverplayer, hand, itemstack);
                     this.level().broadcastEntityEvent(this, (byte)18);
-                    this.makeSound(MotleyFinsSoundEvents.PARROTFISH_EAT.get());
+                    this.makeSound(MotleyFinsSoundEvents.PARROTFISH_EAT);
 
                     return InteractionResult.SUCCESS_SERVER;
                 }
@@ -190,7 +196,7 @@ public class Parrotfish extends AbstractSchoolingFish {
 
     @Override
     public @NotNull ItemStack getBucketItemStack() {
-        return new ItemStack(MotleyFinsItems.PARROTFISH_BUCKET.get());
+        return new ItemStack(MotleyFinsItems.PARROTFISH_BUCKET);
     }
 
     @Override
@@ -219,22 +225,22 @@ public class Parrotfish extends AbstractSchoolingFish {
 
     @Override
     protected SoundEvent getAmbientSound() {
-        return MotleyFinsSoundEvents.PARROTFISH_AMBIENT.get();
+        return MotleyFinsSoundEvents.PARROTFISH_AMBIENT;
     }
 
     @Override
     protected SoundEvent getDeathSound() {
-        return MotleyFinsSoundEvents.PARROTFISH_DEATH.get();
+        return MotleyFinsSoundEvents.PARROTFISH_DEATH;
     }
 
     @Override
     protected @NotNull SoundEvent getFlopSound() {
-        return MotleyFinsSoundEvents.PARROTFISH_FLOP.get();
+        return MotleyFinsSoundEvents.PARROTFISH_FLOP;
     }
 
     @Override
     protected SoundEvent getHurtSound(@NotNull DamageSource pDamageSource) {
-        return MotleyFinsSoundEvents.PARROTFISH_HURT.get();
+        return MotleyFinsSoundEvents.PARROTFISH_HURT;
     }
 
     // Animations //
@@ -282,25 +288,35 @@ public class Parrotfish extends AbstractSchoolingFish {
         return Parrotfish.Variant.byId(this.entityData.get(DATA_TYPE_ID));
     }
 
-    private static Parrotfish.Variant getRandomParrotfishVariant(RandomSource randomSource) {
-        return Parrotfish.Variant.byId(randomSource.nextInt((Variant.values().length) + 1));
+    private static Parrotfish.Variant getRandomParrotfishVariant(Parrotfish parrotfish, RandomSource randomSource, SpawnGroupData spawnGroupData) {
+        Parrotfish.Variant parrotfishVariant;
+        if (spawnGroupData instanceof ParrotfishGroupData parrotfishGroupData) {
+            parrotfishVariant = parrotfishGroupData.variant;
+        } else if ((double)randomSource.nextFloat() < 0.75) {
+            parrotfishVariant = Util.getRandom(COMMON_VARIANTS, randomSource);
+            spawnGroupData = new ParrotfishGroupData(parrotfish, parrotfishVariant);
+        } else {
+            parrotfish.isSchool = false;
+            parrotfishVariant = Parrotfish.Variant.byId(randomSource.nextInt((Variant.values().length) + 1));
+        }
+        return parrotfishVariant;
     }
 
     @Override
     public <T> T get(@NotNull DataComponentType<? extends @NotNull T> componentType) {
-        return componentType == MotleyFinsDataComponents.PARROTFISH_VARIANT.get() ? castComponentValue(componentType, this.getVariant()) : super.get(componentType);
+        return componentType == MotleyFinsDataComponents.PARROTFISH_VARIANT ? castComponentValue(componentType, this.getVariant()) : super.get(componentType);
     }
 
     @Override
     protected void applyImplicitComponents(@NotNull DataComponentGetter componentGetter) {
-        this.applyImplicitComponentIfPresent(componentGetter, MotleyFinsDataComponents.PARROTFISH_VARIANT.get());
+        this.applyImplicitComponentIfPresent(componentGetter, MotleyFinsDataComponents.PARROTFISH_VARIANT);
         super.applyImplicitComponents(componentGetter);
     }
 
     @Override
     protected <T> boolean applyImplicitComponent(@NotNull DataComponentType<@NotNull T> componentType, T $) {
-        if (componentType == MotleyFinsDataComponents.PARROTFISH_VARIANT.get()) {
-            this.setVariant(castComponentValue(MotleyFinsDataComponents.PARROTFISH_VARIANT.get(), $));
+        if (componentType == MotleyFinsDataComponents.PARROTFISH_VARIANT) {
+            this.setVariant(castComponentValue(MotleyFinsDataComponents.PARROTFISH_VARIANT, $));
             return true;
         } else {
             return super.applyImplicitComponent(componentType, $);
@@ -313,18 +329,11 @@ public class Parrotfish extends AbstractSchoolingFish {
         return !this.isSchool;
     }
 
+    @Override
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level, @NotNull DifficultyInstance difficulty, @NotNull EntitySpawnReason reason, SpawnGroupData spawnGroupData) {
         spawnGroupData = super.finalizeSpawn(level, difficulty, reason, spawnGroupData);
-        Parrotfish.Variant parrotfishVariant;
-        RandomSource randomSource = level.getRandom();
-        if (spawnGroupData instanceof ParrotfishGroupData parrotfishGroupData) {
-            parrotfishVariant = parrotfishGroupData.variant;
-        } else {
-            this.isSchool = false;
-            parrotfishVariant = getRandomParrotfishVariant(randomSource);
-        }
 
-        this.setVariant(parrotfishVariant);
+        this.setVariant(getRandomParrotfishVariant(this, level.getRandom(), spawnGroupData));
         return spawnGroupData;
     }
 
@@ -348,7 +357,13 @@ public class Parrotfish extends AbstractSchoolingFish {
     public enum Variant implements StringRepresentable {
 
         RED(0, "red"),
-        BLUE(1, "blue");
+        BLUE(1, "blue"),
+        GREEN(2, "green"),
+        CYAN(3, "cyan"),
+        GRAY(4, "gray"),
+        TRICOLOR(5, "tricolor"),
+        YELLOWTAIL(6, "yellowtail"),
+        STOPLIGHT(7, "stoplight");
 
         private static final IntFunction<Parrotfish.Variant> BY_ID = ByIdMap.sparse(Parrotfish.Variant::id, values(), RED);
         public static final Codec<Parrotfish.Variant> CODEC = StringRepresentable.fromEnum(Parrotfish.Variant::values);
@@ -361,7 +376,7 @@ public class Parrotfish extends AbstractSchoolingFish {
         Variant(int pId, String pName) {
             this.id = pId;
             this.name = pName;
-            this.displayName = Component.translatable("entity.naturality.parrotfish.type." + this.name);
+            this.displayName = Component.translatable("entity.motleyfins.parrotfish.type." + this.name);
         }
 
         public @NotNull String getSerializedName() {

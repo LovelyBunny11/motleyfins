@@ -27,9 +27,9 @@ public class BlockModelGeneratorsMixin {
             textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(Blocks.CHISELED_RED_SANDSTONE));
         })).put(Blocks.CHISELED_TUFF_BRICKS, TexturedModel.COLUMN_WITH_WALL.get(Blocks.CHISELED_TUFF_BRICKS)).put(Blocks.CHISELED_TUFF, TexturedModel.COLUMN_WITH_WALL.get(Blocks.CHISELED_TUFF))
         // Adding MotleyFins Blocks //
-        .put(MotleyFinsBlocks.WHITE_SANDSTONE.get(), TexturedModel.TOP_BOTTOM_WITH_WALL.get(MotleyFinsBlocks.WHITE_SANDSTONE.get())).put(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE.get(), TexturedModel.createAllSame(TextureMapping.getBlockTexture(MotleyFinsBlocks.WHITE_SANDSTONE.get(), "_top"))).put(MotleyFinsBlocks.CUT_WHITE_SANDSTONE.get(), TexturedModel.COLUMN.get(MotleyFinsBlocks.WHITE_SANDSTONE.get()).updateTextures((textureMapping) -> textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(MotleyFinsBlocks.CUT_WHITE_SANDSTONE.get())))).put(MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE.get(), TexturedModel.COLUMN.get(MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE.get()).updateTextures((textureMapping) -> {
-            textureMapping.put(TextureSlot.END, TextureMapping.getBlockTexture(MotleyFinsBlocks.WHITE_SANDSTONE.get(), "_top"));
-            textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE.get()));
+        .put(MotleyFinsBlocks.WHITE_SANDSTONE, TexturedModel.TOP_BOTTOM_WITH_WALL.get(MotleyFinsBlocks.WHITE_SANDSTONE)).put(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE, TexturedModel.createAllSame(TextureMapping.getBlockTexture(MotleyFinsBlocks.WHITE_SANDSTONE, "_top"))).put(MotleyFinsBlocks.CUT_WHITE_SANDSTONE, TexturedModel.COLUMN.get(MotleyFinsBlocks.WHITE_SANDSTONE).updateTextures((textureMapping) -> textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(MotleyFinsBlocks.CUT_WHITE_SANDSTONE)))).put(MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE, TexturedModel.COLUMN.get(MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE).updateTextures((textureMapping) -> {
+            textureMapping.put(TextureSlot.END, TextureMapping.getBlockTexture(MotleyFinsBlocks.WHITE_SANDSTONE, "_top"));
+            textureMapping.put(TextureSlot.SIDE, TextureMapping.getBlockTexture(MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE));
         })).build();
 
     }

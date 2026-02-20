@@ -16,16 +16,29 @@ public class MotleyFinsBlockTagProvider extends FabricTagProvider.BlockTagProvid
 
     @Override
     protected void addTags(HolderLookup.@NotNull Provider wrapperLookup) {
+        valueLookupBuilder(BlockTags.MINEABLE_WITH_SHOVEL)
+                .addOptional(MotleyFinsBlocks.WHITE_SAND);
+        valueLookupBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE)
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_STAIRS)
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_SLAB)
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_WALL)
+                .addOptional(MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE)
+                .addOptional(MotleyFinsBlocks.CUT_WHITE_SANDSTONE)
+                .addOptional(MotleyFinsBlocks.CUT_WHITE_SANDSTONE_SLAB)
+                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE)
+                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_STAIRS)
+                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_SLAB);
         valueLookupBuilder(BlockTags.SAND)
-                .addOptional(MotleyFinsBlocks.WHITE_SAND.get());
+                .addOptional(MotleyFinsBlocks.WHITE_SAND);
         valueLookupBuilder(BlockTags.STAIRS)
-                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_STAIRS.get())
-                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_STAIRS.get());
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_STAIRS)
+                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_STAIRS);
         valueLookupBuilder(BlockTags.SLABS)
-                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_SLAB.get())
-                .addOptional(MotleyFinsBlocks.CUT_WHITE_SANDSTONE_SLAB.get())
-                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_SLAB.get());
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_SLAB)
+                .addOptional(MotleyFinsBlocks.CUT_WHITE_SANDSTONE_SLAB)
+                .addOptional(MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE_SLAB);
         valueLookupBuilder(BlockTags.WALLS)
-                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_WALL.get());
+                .addOptional(MotleyFinsBlocks.WHITE_SANDSTONE_WALL);
     }
 }
