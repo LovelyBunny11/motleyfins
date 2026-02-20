@@ -3,6 +3,8 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+group = mod_group_id
+
 neoForge {
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists
@@ -34,13 +36,43 @@ neoForge {
         }
     }
     mods {
-        "${mod_id}" {
+        "motleyfins" {
             sourceSet sourceSets.main
         }
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+var generateModMetadata = tasks.register("generateModMetadata", ProcessResources) {
+    var expandProps = [
+            'version'                      : version,
+            'group'                        : project.group,
+            'minecraft_version'            : minecraft_version,
+            'minecraft_version_range'      : minecraft_version_range,
+            'fabric_version'               : fabric_version,
+            'fabric_loader_version'        : fabric_loader_version,
+            'mod_name'                     : mod_name,
+            'mod_author'                   : mod_author,
+            'mod_id'                       : mod_id,
+            'license'                      : license,
+            'description'                  : project.description,
+            'neoforge_version'             : neoforge_version,
+            'neoforge_loader_version_range': neoforge_loader_version_range,
+            'mod_group_id': mod_group_id,
+            'credits'                      : credits,
+            'java_version'                 : java_version
+    ]
+    expand expandProps
+    from "src/main/resources/META-INF"
+    into "build/generated/sources/modMetadata"
+}
+
+neoForge.ideSyncTask generateModMetadata
+
+sourceSets.main.resources { srcDir generateModMetadata }
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
 
 // Implement mcgradleconventions loader attribute
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)

@@ -35,6 +35,7 @@ public class MotleyFinsRecipeProvider  extends FabricRecipeProvider {
                 this.stairBuilder(MotleyFinsBlocks.WHITE_SANDSTONE_STAIRS, Ingredient.of(MotleyFinsBlocks.WHITE_SANDSTONE, MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE, MotleyFinsBlocks.CUT_WHITE_SANDSTONE)).unlockedBy("has_white_sandstone", this.has(MotleyFinsBlocks.WHITE_SANDSTONE)).unlockedBy("has_chiseled_white_sandstone", this.has(MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE)).unlockedBy("has_cut_white_sandstone", this.has(MotleyFinsBlocks.CUT_WHITE_SANDSTONE)).save(this.output);
                 this.cut(RecipeCategory.BUILDING_BLOCKS, MotleyFinsBlocks.CUT_WHITE_SANDSTONE, MotleyFinsBlocks.WHITE_SANDSTONE);
                 this.wall(RecipeCategory.DECORATIONS, MotleyFinsBlocks.WHITE_SANDSTONE_WALL, MotleyFinsBlocks.WHITE_SANDSTONE);
+                this.chiseled(RecipeCategory.BUILDING_BLOCKS, MotleyFinsBlocks.CHISELED_WHITE_SANDSTONE, MotleyFinsBlocks.WHITE_SANDSTONE_SLAB);
 
                 SimpleCookingRecipeBuilder.smelting(Ingredient.of(MotleyFinsBlocks.WHITE_SANDSTONE), RecipeCategory.BUILDING_BLOCKS, MotleyFinsBlocks.SMOOTH_WHITE_SANDSTONE.asItem(), 0.1F, 200).unlockedBy("has_white_sandstone", this.has(MotleyFinsBlocks.WHITE_SANDSTONE)).save(this.output);
 

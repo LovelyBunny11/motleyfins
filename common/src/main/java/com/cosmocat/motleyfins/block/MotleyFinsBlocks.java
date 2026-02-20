@@ -1,6 +1,7 @@
 package com.cosmocat.motleyfins.block;
 
 import com.cosmocat.motleyfins.MotleyFins;
+import com.cosmocat.motleyfins.item.MotleyFinsItems;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -15,9 +16,13 @@ import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
 import java.util.function.Function;
 
 public class MotleyFinsBlocks {
+
+    public static Map<ResourceKey<@NotNull Block>, Block> REGISTRIES;
+
     public static final Block WHITE_SAND = registerBlock("white_sand",
             (properties) -> new SandBlock(new ColorRGBA(12893615), properties), BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND));
     public static final Block WHITE_SANDSTONE = registerBlock("white_sandstone",
@@ -49,6 +54,8 @@ public class MotleyFinsBlocks {
         BlockItem blockItem = new BlockItem(block, new Item.Properties().setId(itemKey).useBlockDescriptionPrefix());
 
         Registry.register(BuiltInRegistries.ITEM, itemKey, blockItem);
+        MotleyFinsItems.REGISTRIES.put(itemKey, blockItem);
+        REGISTRIES.put(blockKey, block);
         return Registry.register(BuiltInRegistries.BLOCK, blockKey, block);
     }
 

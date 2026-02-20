@@ -15,9 +15,12 @@ import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.level.material.Fluids;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
 import java.util.function.Function;
 
 public class MotleyFinsItems {
+    public static Map<ResourceKey<@NotNull Item>, Item> REGISTRIES;
+
     public static final Item PARROTFISH_BUCKET = registerItem("parrotfish_bucket",
             (properties) -> new MotleyFinsMobBucketItem(MotleyFinsEntities.PARROTFISH, Fluids.WATER, SoundEvents.BUCKET_EMPTY_FISH, properties), new Item.Properties().stacksTo(1));
 
@@ -34,6 +37,7 @@ public class MotleyFinsItems {
         Item item = func.apply(props.setId(key));
         Registry.register(BuiltInRegistries.ITEM, key, item);
 
+        REGISTRIES.put(key, item);
         return item;
     }
 }

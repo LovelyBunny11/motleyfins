@@ -10,9 +10,13 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
 import java.util.function.UnaryOperator;
 
 public class MotleyFinsDataComponents {
+
+    public static Map<ResourceKey<@NotNull DataComponentType<?>>, DataComponentType<?>> REGISTRIES;
+
     public static final DataComponentType<Parrotfish.@NotNull Variant> PARROTFISH_VARIANT = registerComponentType(
             "parrotfish/variant", (component) -> component.persistent(Parrotfish.Variant.CODEC).networkSynchronized(Parrotfish.Variant.STREAM_CODEC));
 
@@ -20,6 +24,9 @@ public class MotleyFinsDataComponents {
 
     public static <T> DataComponentType<@NotNull T> registerComponentType(String name, UnaryOperator<DataComponentType.Builder<@NotNull T>> builder) {
         ResourceKey<@NotNull DataComponentType<?>> key = ResourceKey.create(Registries.DATA_COMPONENT_TYPE, Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID, name));
-        return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, key, builder.apply(DataComponentType.builder()).build());
+        DataComponentType<@NotNull T> dataComponentType = builder.apply(DataComponentType.builder()).build();
+
+        REGISTRIES.put(key, dataComponentType);
+        return Registry.register(BuiltInRegistries.DATA_COMPONENT_TYPE, key, dataComponentType);
     }
 }

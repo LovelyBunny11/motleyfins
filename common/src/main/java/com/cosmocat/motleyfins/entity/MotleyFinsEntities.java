@@ -11,7 +11,11 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
+
 public class MotleyFinsEntities {
+
+    public static Map<ResourceKey<@NotNull EntityType<?>>, EntityType<?>> REGISTRIES;
 
     public static final EntityType<@NotNull Parrotfish> PARROTFISH =
             registerEntity("parrotfish", EntityType.Builder.of(Parrotfish::new, MobCategory.WATER_AMBIENT)
@@ -21,6 +25,9 @@ public class MotleyFinsEntities {
 
     public static <T extends Entity> EntityType<@NotNull T> registerEntity(String name, EntityType.Builder<@NotNull T> builder) {
         ResourceKey<@NotNull EntityType<?>> key = ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID, name));
-        return Registry.register(BuiltInRegistries.ENTITY_TYPE, key, builder.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID, name))));
+        EntityType<@NotNull T> entityType = builder.build(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID, name)));
+
+        REGISTRIES.put(key, entityType);
+        return Registry.register(BuiltInRegistries.ENTITY_TYPE, key, entityType);
     }
 }

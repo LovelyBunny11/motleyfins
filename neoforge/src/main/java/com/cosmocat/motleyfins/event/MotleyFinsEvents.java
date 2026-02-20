@@ -7,7 +7,7 @@ import com.cosmocat.motleyfins.entity.MotleyFinsEntities;
 import com.cosmocat.motleyfins.entity.Parrotfish;
 import com.cosmocat.motleyfins.item.MotleyFinsItems;
 import com.cosmocat.motleyfins.sound.MotleyFinsSoundEvents;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.world.entity.SpawnPlacementTypes;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -25,16 +25,10 @@ public class MotleyFinsEvents {
 
     @SubscribeEvent
     public static void register(RegisterEvent event) {
-        if (event.getRegistryKey().equals(BuiltInRegistries.ITEM)) {
-            MotleyFinsItems.init();
-        } else if (event.getRegistryKey().equals(BuiltInRegistries.BLOCK)) {
-            MotleyFinsBlocks.init();
-        } else  if (event.getRegistryKey().equals(BuiltInRegistries.ENTITY_TYPE)) {
-            MotleyFinsEntities.init();
-        } else  if (event.getRegistryKey().equals(BuiltInRegistries.DATA_COMPONENT_TYPE)) {
-            MotleyFinsDataComponents.init();
-        } else  if (event.getRegistryKey().equals(BuiltInRegistries.SOUND_EVENT)) {
-            MotleyFinsSoundEvents.init();
-        }
+        event.register(Registries.BLOCK, register -> MotleyFinsBlocks.REGISTRIES.forEach(register::register));
+        event.register(Registries.ITEM, register -> MotleyFinsItems.REGISTRIES.forEach(register::register));
+        event.register(Registries.ENTITY_TYPE, register -> MotleyFinsEntities.REGISTRIES.forEach(register::register));
+        event.register(Registries.DATA_COMPONENT_TYPE, register -> MotleyFinsDataComponents.REGISTRIES.forEach(register::register));
+        event.register(Registries.SOUND_EVENT, register -> MotleyFinsSoundEvents.REGISTRIES.forEach(register::register));
     }
 }
