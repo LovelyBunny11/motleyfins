@@ -10,12 +10,13 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.UnaryOperator;
 
 public class MotleyFinsDataComponents {
 
-    public static Map<ResourceKey<@NotNull DataComponentType<?>>, DataComponentType<?>> REGISTRIES;
+    public static Map<ResourceKey<@NotNull DataComponentType<?>>, DataComponentType<?>> REGISTRIES = new HashMap<>();
 
     public static final DataComponentType<Parrotfish.@NotNull Variant> PARROTFISH_VARIANT = registerComponentType(
             "parrotfish/variant", (component) -> component.persistent(Parrotfish.Variant.CODEC).networkSynchronized(Parrotfish.Variant.STREAM_CODEC));

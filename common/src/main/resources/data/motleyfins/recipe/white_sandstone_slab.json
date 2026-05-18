@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": [
+      "motleyfins:white_sandstone",
+      "motleyfins:chiseled_white_sandstone"
+    ]
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "id": "motleyfins:white_sandstone_slab"
+  }
+}

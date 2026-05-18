@@ -11,15 +11,16 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MotleyFinsEntities {
 
-    public static Map<ResourceKey<@NotNull EntityType<?>>, EntityType<?>> REGISTRIES;
+    public static Map<ResourceKey<@NotNull EntityType<?>>, EntityType<?>> REGISTRIES = new HashMap<>();
 
     public static final EntityType<@NotNull Parrotfish> PARROTFISH =
             registerEntity("parrotfish", EntityType.Builder.of(Parrotfish::new, MobCategory.WATER_AMBIENT)
-                    .sized(0.9F, 0.6F).eyeHeight(0.25F));
+                    .sized(0.8F, 0.55F).eyeHeight(0.25F));
 
     public static void init() {}
 

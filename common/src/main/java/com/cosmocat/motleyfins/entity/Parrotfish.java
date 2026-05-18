@@ -4,6 +4,7 @@ import com.cosmocat.motleyfins.block.MotleyFinsBlocks;
 import com.cosmocat.motleyfins.data.MotleyFinsDataComponents;
 import com.cosmocat.motleyfins.data.MotleyFinsTags;
 import com.cosmocat.motleyfins.item.MotleyFinsItems;
+import com.cosmocat.motleyfins.particle.MotleyFinsParticles;
 import com.cosmocat.motleyfins.sound.MotleyFinsSoundEvents;
 import com.mojang.serialization.Codec;
 import io.netty.buffer.ByteBuf;
@@ -24,10 +25,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.util.ByIdMap;
-import net.minecraft.util.RandomSource;
-import net.minecraft.util.StringRepresentable;
-import net.minecraft.util.Util;
+import net.minecraft.util.*;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -43,6 +41,7 @@ import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.animal.Bucketable;
 import net.minecraft.world.entity.animal.fish.AbstractSchoolingFish;
 import net.minecraft.world.entity.animal.fish.WaterAnimal;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.CustomData;
@@ -58,11 +57,12 @@ import java.util.function.IntFunction;
 
 public class Parrotfish extends AbstractSchoolingFish {
 
-    protected static final Parrotfish.Variant[] COMMON_VARIANTS = List.of(Variant.TRICOLOR, Variant.YELLOWTAIL, Variant.STOPLIGHT).toArray(Variant[]::new);
+    protected static final Variant[] COMMON_VARIANTS = List.of(Variant.BLUE, Variant.TRICOLOR, Variant.YELLOWTAIL, Variant.STOPLIGHT, Variant.REDBAND).toArray(Variant[]::new);
 
     public static final EntityDataAccessor<@NotNull Integer> DATA_TYPE_ID = SynchedEntityData.defineId(Parrotfish.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<@NotNull Boolean> IS_DROPPING_SAND = SynchedEntityData.defineId(Parrotfish.class, EntityDataSerializers.BOOLEAN);
 
+    private int ticksAfterLastSandDrop = 0;
     private int sandDroppingTicks = 0;
     private int sandDroppingCooldown = 0;
     private boolean isSchool = true;
@@ -95,23 +95,74 @@ public class Parrotfish extends AbstractSchoolingFish {
         }
     }
 
+    private @NotNull ItemEntity createWhiteSandToDrop() {
+        double d0 = this.getEyeY() - (double)0.3F;
+        ItemEntity itementity = new ItemEntity(this.level(), this.getX(), d0, this.getZ(), new ItemStack(MotleyFinsBlocks.WHITE_SAND.asItem()));
+        itementity.setPickUpDelay(40);
+        itementity.setThrower(this);
+
+        float f8 = Mth.sin(this.getXRot() * ((float)Math.PI / 180F));
+        float f2 = Mth.cos(this.getXRot() * ((float)Math.PI / 180F));
+        float f3 = Mth.sin( this.getYRot() * ((float)Math.PI / 180F));
+        float f4 = Mth.cos(this.getYRot() * ((float)Math.PI / 180F));
+        float f5 = this.random.nextFloat() * ((float)Math.PI * 2F);
+        float f6 = 0.02F * this.random.nextFloat();
+        itementity.setDeltaMovement(-((double)(-f3 * f2 * 0.3F) + Math.cos(f5) * (double)f6), -(-f8 * 0.3F + 0.1F + (this.random.nextFloat() - this.random.nextFloat()) * 0.1F), -((double)(f4 * f2 * 0.3F) + Math.sin(f5) * (double)f6));
+
+        return itementity;
+    }
+
+    public ItemEntity dropWhiteSand() {
+        if (this.level().isClientSide()) {
+            this.swing(InteractionHand.MAIN_HAND);
+            return null;
+        } else {
+            ItemEntity itementity = this.createWhiteSandToDrop();
+            this.level().addFreshEntity(itementity);
+
+            return itementity;
+        }
+    }
+
+
     @Override
     public void aiStep() {
         super.aiStep();
+        ++this.ticksAfterLastSandDrop;
+        ItemEntity item = null;
 
         if (this.isDroppingSand()) {
             ++this.sandDroppingTicks;
             if ((this.random.nextInt(0, 30) == 0)) {
-                this.drop(new ItemStack(MotleyFinsBlocks.WHITE_SAND.asItem()), true, true);
+                item = this.dropWhiteSand();
                 this.playSound(SoundEvents.ITEM_PICKUP, 0.25F, 3.0F);
+                this.ticksAfterLastSandDrop = 0;
             } if (this.sandDroppingTicks > 200) {
                 this.setDroppingSand(false);
                 this.sandDroppingTicks = 0;
                 this.sandDroppingCooldown = 6000;
             }
+            if (this.random.nextInt(5) == 0) {
+                int d = this.random.nextInt(1, 5);
+                for (int i = 0; i < d; i++) {
+                    double d0 = this.random.nextGaussian() * 0.02;
+                    double d1 = this.random.nextGaussian() * 0.02;
+                    double d2 = this.random.nextGaussian() * 0.02;
+                    this.level().addParticle(MotleyFinsParticles.WHITE_SAND, this.getX(), this.getY(), this.getZ(), d0, d1, d2);
+                }
+            }
         } else {
             if (this.sandDroppingCooldown > 0) {
                 --this.sandDroppingCooldown;
+            }
+        }
+
+        if (item != null) {
+            if (this.ticksAfterLastSandDrop == 10) {
+                double d0 = this.random.nextGaussian() * 0.02;
+                double d1 = this.random.nextGaussian() * 0.02;
+                double d2 = this.random.nextGaussian() * 0.02;
+                item.level().addParticle(MotleyFinsParticles.WHITE_SAND, item.getX(), item.getY(), item.getZ(), d0, d1, d2);
             }
         }
     }
@@ -127,7 +178,7 @@ public class Parrotfish extends AbstractSchoolingFish {
 
     public void addAdditionalSaveData(@NotNull ValueOutput output) {
         super.addAdditionalSaveData(output);
-        output.store("Variant", Parrotfish.Variant.CODEC, this.getVariant());
+        output.store("Variant", Variant.CODEC, this.getVariant());
         output.putBoolean("IsDroppingSand", this.entityData.get(IS_DROPPING_SAND));
         output.putInt("SandDroppingTicks", this.sandDroppingTicks);
         output.putInt("SandDroppingCooldown", this.sandDroppingCooldown);
@@ -135,7 +186,7 @@ public class Parrotfish extends AbstractSchoolingFish {
 
     public void readAdditionalSaveData(@NotNull ValueInput input) {
         super.readAdditionalSaveData(input);
-        this.setVariant(input.read("Variant", Parrotfish.Variant.CODEC).orElse(Variant.RED));
+        this.setVariant(input.read("Variant", Variant.CODEC).orElse(Variant.RED));
         this.setDroppingSand(input.getBooleanOr("IsDroppingSand", false));
         this.sandDroppingTicks = input.getIntOr("SandDroppingTicks", 0);
         this.sandDroppingCooldown = input.getIntOr("SandDroppingCooldown", 0);
@@ -163,7 +214,7 @@ public class Parrotfish extends AbstractSchoolingFish {
     }
 
     private boolean canFeed() {
-        return !(this.isDroppingSand()) && (this.sandDroppingCooldown == 0);
+        return this.isInWater() && !(this.isDroppingSand()) && (this.sandDroppingCooldown == 0);
     }
 
     public static boolean isFood(ItemStack itemstack) {
@@ -186,7 +237,7 @@ public class Parrotfish extends AbstractSchoolingFish {
                 double d2 = this.random.nextGaussian() * 0.02;
                 this.level().addParticle(ParticleTypes.HAPPY_VILLAGER, this.getRandomX(1.0F), this.getRandomY(), this.getRandomZ(1.0F), d0, d1, d2);
             }
-        } else {
+        }  else {
             super.handleEntityEvent(event);
         }
 
@@ -211,7 +262,7 @@ public class Parrotfish extends AbstractSchoolingFish {
     public void loadFromBucketTag(@NotNull CompoundTag tag) {
         super.loadFromBucketTag(tag);
         if (tag.contains("Variant")) {
-            this.setVariant(Parrotfish.Variant.byId(tag.getIntOr("Variant", 0)));
+            this.setVariant(Variant.byId(tag.getIntOr("Variant", 0)));
         } if (tag.contains("IsDroppingSand")) {
             this.setDroppingSand(tag.getBooleanOr("IsDroppingSand", false));
         } if (tag.contains("SandDroppingTicks")) {
@@ -280,26 +331,12 @@ public class Parrotfish extends AbstractSchoolingFish {
 
     // Variant //
 
-    public void setVariant(Parrotfish.Variant variant) {
+    public void setVariant(Variant variant) {
         this.entityData.set(DATA_TYPE_ID, variant.id);
     }
 
-    public Parrotfish.Variant getVariant() {
-        return Parrotfish.Variant.byId(this.entityData.get(DATA_TYPE_ID));
-    }
-
-    private static Parrotfish.Variant getRandomParrotfishVariant(Parrotfish parrotfish, RandomSource randomSource, SpawnGroupData spawnGroupData) {
-        Parrotfish.Variant parrotfishVariant;
-        if (spawnGroupData instanceof ParrotfishGroupData parrotfishGroupData) {
-            parrotfishVariant = parrotfishGroupData.variant;
-        } else if ((double)randomSource.nextFloat() < 0.75) {
-            parrotfishVariant = Util.getRandom(COMMON_VARIANTS, randomSource);
-            spawnGroupData = new ParrotfishGroupData(parrotfish, parrotfishVariant);
-        } else {
-            parrotfish.isSchool = false;
-            parrotfishVariant = Parrotfish.Variant.byId(randomSource.nextInt((Variant.values().length) + 1));
-        }
-        return parrotfishVariant;
+    public Variant getVariant() {
+        return Variant.byId(this.entityData.get(DATA_TYPE_ID));
     }
 
     @Override
@@ -332,8 +369,20 @@ public class Parrotfish extends AbstractSchoolingFish {
     @Override
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor level, @NotNull DifficultyInstance difficulty, @NotNull EntitySpawnReason reason, SpawnGroupData spawnGroupData) {
         spawnGroupData = super.finalizeSpawn(level, difficulty, reason, spawnGroupData);
+        RandomSource randomSource = level.getRandom();
 
-        this.setVariant(getRandomParrotfishVariant(this, level.getRandom(), spawnGroupData));
+        Variant parrotfishVariant;
+        if (spawnGroupData instanceof ParrotfishGroupData parrotfishGroupData) {
+            parrotfishVariant = parrotfishGroupData.variant;
+        } else if ((double)randomSource.nextFloat() < 0.75) {
+            parrotfishVariant = Util.getRandom(COMMON_VARIANTS, randomSource);
+            spawnGroupData = new ParrotfishGroupData(this, parrotfishVariant);
+        } else {
+            this.isSchool = false;
+            parrotfishVariant = Variant.byId(randomSource.nextInt((Variant.values().length) + 1));
+        }
+
+        this.setVariant(parrotfishVariant);
         return spawnGroupData;
     }
 
@@ -345,10 +394,10 @@ public class Parrotfish extends AbstractSchoolingFish {
     }
 
 
-    static class ParrotfishGroupData extends AbstractSchoolingFish.SchoolSpawnGroupData {
-        final Parrotfish.Variant variant;
+    static class ParrotfishGroupData extends SchoolSpawnGroupData {
+        final Variant variant;
 
-        ParrotfishGroupData(Parrotfish parrotfish, Parrotfish.Variant variant) {
+        ParrotfishGroupData(Parrotfish parrotfish, Variant variant) {
             super(parrotfish);
             this.variant = variant;
         }
@@ -363,11 +412,12 @@ public class Parrotfish extends AbstractSchoolingFish {
         GRAY(4, "gray"),
         TRICOLOR(5, "tricolor"),
         YELLOWTAIL(6, "yellowtail"),
-        STOPLIGHT(7, "stoplight");
+        STOPLIGHT(7, "stoplight"),
+        REDBAND(8, "redband");
 
-        private static final IntFunction<Parrotfish.Variant> BY_ID = ByIdMap.sparse(Parrotfish.Variant::id, values(), RED);
-        public static final Codec<Parrotfish.Variant> CODEC = StringRepresentable.fromEnum(Parrotfish.Variant::values);
-        public static final StreamCodec<@NotNull ByteBuf, Parrotfish.@NotNull Variant> STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID, Parrotfish.Variant::id);
+        private static final IntFunction<Variant> BY_ID = ByIdMap.sparse(Variant::id, values(), RED);
+        public static final Codec<Variant> CODEC = StringRepresentable.fromEnum(Variant::values);
+        public static final StreamCodec<@NotNull ByteBuf, @NotNull Variant> STREAM_CODEC = ByteBufCodecs.idMapper(BY_ID, Variant::id);
 
         final int id;
         private final String name;
@@ -391,12 +441,12 @@ public class Parrotfish extends AbstractSchoolingFish {
             return this.id;
         }
 
-        public static Parrotfish.Variant byId(int pId) {
+        public static Variant byId(int pId) {
             return BY_ID.apply(pId);
         }
 
         public record Id(int id) {
-            public static final Codec<Parrotfish.Variant.Id> CODEC = Codec.INT.xmap(Parrotfish.Variant.Id::new, Parrotfish.Variant.Id::id);
+            public static final Codec<Id> CODEC = Codec.INT.xmap(Id::new, Id::id);
 
             public int id() {
                 return this.id;

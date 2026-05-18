@@ -9,10 +9,11 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class MotleyFinsSoundEvents {
-    public static Map<ResourceKey<@NotNull SoundEvent>, SoundEvent> REGISTRIES;
+    public static Map<ResourceKey<@NotNull SoundEvent>, SoundEvent> REGISTRIES = new HashMap<>();
 
     public static final SoundEvent PARROTFISH_AMBIENT = registerSound("entity.parrotfish.ambient");
     public static final SoundEvent PARROTFISH_DEATH = registerSound("entity.parrotfish.death");

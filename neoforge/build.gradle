@@ -5,10 +5,18 @@ plugins {
 
 group = mod_group_id
 
+
+
+dependencies {
+}
+
+
 neoForge {
     version = neoforge_version
     // Automatically enable neoforge AccessTransformers if the file exists
     def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    def output = project(':common').file('src/generated/resources')
+    def existing = project(':common').file('src/main/resources/')
     if (at.exists()) {
         accessTransformers.from(at.absolutePath)
     }
@@ -21,16 +29,17 @@ neoForge {
             systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
             ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
         }
+
         client {
             client()
         }
+
         data {
             clientData()
 
-            // DataGen can be run by - "./gradlew :neoforge:runData" in Terminal.
-            // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', output.getAbsolutePath(), '--existing', existing.getAbsolutePath()
         }
+
         server {
             server()
         }
@@ -67,8 +76,6 @@ var generateModMetadata = tasks.register("generateModMetadata", ProcessResources
 }
 
 neoForge.ideSyncTask generateModMetadata
-
-sourceSets.main.resources { srcDir generateModMetadata }
 
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'

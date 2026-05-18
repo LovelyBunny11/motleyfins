@@ -1,10 +1,12 @@
 package com.cosmocat.motleyfins;
 
 import com.cosmocat.motleyfins.block.MotleyFinsBlocks;
+import com.cosmocat.motleyfins.data.MotleyFinsDataComponents;
 import com.cosmocat.motleyfins.data.MotleyFinsTags;
 import com.cosmocat.motleyfins.entity.MotleyFinsEntities;
 import com.cosmocat.motleyfins.entity.Parrotfish;
 import com.cosmocat.motleyfins.item.MotleyFinsItems;
+import com.cosmocat.motleyfins.sound.MotleyFinsSoundEvents;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
@@ -21,9 +23,14 @@ public class MotleyFinsFabric implements ModInitializer {
     
     @Override
     public void onInitialize() {
+        MotleyFinsBlocks.init();
+        MotleyFinsItems.init();
+        MotleyFinsSoundEvents.init();
+        MotleyFinsEntities.init();
+        MotleyFinsDataComponents.init();
         MotleyFins.init();
         FabricDefaultAttributeRegistry.register(MotleyFinsEntities.PARROTFISH, Parrotfish.createMobAttributes());
-        BiomeModifications.addSpawn(BiomeSelectors.tag(MotleyFinsTags.Biomes.SPAWNS_PARROTFISH), MobCategory.WATER_AMBIENT, MotleyFinsEntities.PARROTFISH, 25, 3, 6);
+        BiomeModifications.addSpawn(BiomeSelectors.tag(MotleyFinsTags.Biomes.SPAWNS_PARROTFISH), MobCategory.WATER_AMBIENT, MotleyFinsEntities.PARROTFISH, 25, 4, 6);
         SpawnPlacements.register(MotleyFinsEntities.PARROTFISH, SpawnPlacementTypes.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES, Parrotfish::checkParrotfishSpawnRules);
         addItemsToCreativeTabs();
     }

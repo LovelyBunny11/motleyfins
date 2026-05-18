@@ -3,6 +3,10 @@ plugins {
     id 'net.neoforged.moddev'
 }
 
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
+}
+
 neoForge {
     neoFormVersion = neo_form_version
     def at = file('src/main/resources/META-INF/accesstransformer.cfg')
@@ -34,8 +38,8 @@ configurations {
 }
 
 artifacts {
-    commonJava sourceSets.main.java.sourceDirectories.singleFile
-    commonResources sourceSets.main.resources.sourceDirectories.singleFile
+    commonJava sourceSets.main.java.sourceDirectories.files
+    commonResources sourceSets.main.resources.sourceDirectories.files
 }
 
 // Implement mcgradleconventions loader attribute

@@ -18,6 +18,7 @@ public class ParrotfishRenderer extends MobRenderer<@NotNull Parrotfish, @NotNul
     private static final Identifier TRICOLOR_LOCATION = Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID,"textures/entity/parrotfish/tricolor.png");
     private static final Identifier YELLOWTAIL_LOCATION = Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID,"textures/entity/parrotfish/yellowtail.png");
     private static final Identifier STOPLIGHT_LOCATION = Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID,"textures/entity/parrotfish/stoplight.png");
+    private static final Identifier REDBAND_LOCATION = Identifier.fromNamespaceAndPath(MotleyFins.MOD_ID,"textures/entity/parrotfish/redband.png");
 
     public ParrotfishRenderer(EntityRendererProvider.Context pContext) {
         super(pContext, new ParrotfishModel(pContext.bakeLayer(ParrotfishModel.PARROTFISH_LAYER)), 0.5f);
@@ -38,6 +39,7 @@ public class ParrotfishRenderer extends MobRenderer<@NotNull Parrotfish, @NotNul
             case TRICOLOR -> TRICOLOR_LOCATION;
             case YELLOWTAIL -> YELLOWTAIL_LOCATION;
             case STOPLIGHT -> STOPLIGHT_LOCATION;
+            case REDBAND -> REDBAND_LOCATION;
         };
     }
 
