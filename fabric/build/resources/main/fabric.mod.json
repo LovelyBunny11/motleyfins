@@ -1,0 +1,39 @@
+{
+    "schemaVersion": 1,
+    "id": "motleyfins",
+    "version": "1.0.0",
+    "name": "Motley Fins",
+    "description": "A",
+    "authors": [
+        "CosmoCat"
+    ],
+    "license": "CC0-1.0",
+    "icon": "motleyfins.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.cosmocat.motleyfins.MotleyFinsFabric"
+        ],
+        "client": [
+          "com.cosmocat.motleyfins.client.MotleyFinsFabricClient"
+        ],
+       "fabric-datagen": [
+         "com.cosmocat.motleyfins.datagen.MotleyFinsDataGenerator"
+        ]
+    },
+    "mixins": [
+        "motleyfins.mixins.json",
+        "motleyfins.fabric.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=0.19.3",
+        "fabric-api": "*",
+        "minecraft": "~1.21.1",
+        "java": ">=21"
+    },
+    "accessWidener": "motleyfins.accesswidener",
+    "suggests": {
+        "another-mod": "*"
+    }
+}
+  

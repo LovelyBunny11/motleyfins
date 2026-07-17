@@ -1,0 +1,12 @@
+{
+  "type": "neoforge:add_spawns",
+  "biomes": "#motleyfins:spawns_parrotfish",
+  "spawners": [
+    {
+      "type": "motleyfins:parrotfish",
+      "weight": 25,
+      "minCount": 6,
+      "maxCount": 8
+    }
+  ]
+}

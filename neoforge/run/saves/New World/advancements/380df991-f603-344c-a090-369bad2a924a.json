@@ -1,0 +1,111 @@
+{
+  "minecraft:recipes/decorations/crafting_table": {
+    "criteria": {
+      "unlock_right_away": "2026-07-17 00:27:12 +0300"
+    },
+    "done": true
+  },
+  "minecraft:adventure/adventuring_time": {
+    "criteria": {
+      "minecraft:plains": "2026-07-17 00:27:13 +0300"
+    },
+    "done": false
+  },
+  "motleyfins:recipes/building_blocks/white_sandstone": {
+    "criteria": {
+      "has_white_sand": "2026-07-17 00:28:26 +0300"
+    },
+    "done": true
+  },
+  "minecraft:story/root": {
+    "criteria": {
+      "crafting_table": "2026-07-17 00:29:24 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/building_blocks/cut_white_sandstone": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/decorations/white_sandstone_wall_from_white_sandstone_stonecutting": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/building_blocks/white_sandstone_slab_from_white_sandstone_stonecutting": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/building_blocks/white_sandstone_slab": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/decorations/white_sandstone_wall": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/building_blocks/cut_white_sandstone_from_white_sandstone_stonecutting": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/building_blocks/cut_white_sandstone_slab_from_white_sandstone_stonecutting": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/building_blocks/white_sandstone_stairs_from_white_sandstone_stonecutting": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/building_blocks/white_sandstone_stairs": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/building_blocks/smooth_white_sandstone": {
+    "criteria": {
+      "has_white_sandstone": "2026-07-17 00:29:33 +0300"
+    },
+    "done": true
+  },
+  "motleyfins:recipes/building_blocks/chiseled_white_sandstone": {
+    "criteria": {
+      "has_white_sandstone_slab": "2026-07-17 00:29:51 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/smoker": {
+    "criteria": {
+      "has_furnace": "2026-07-17 00:30:14 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/composter": {
+    "criteria": {
+      "has_wood_slab": "2026-07-17 00:30:18 +0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/decorations/barrel": {
+    "criteria": {
+      "has_wood_slab": "2026-07-17 00:30:18 +0300"
+    },
+    "done": true
+  },
+  "DataVersion": 3955
+}

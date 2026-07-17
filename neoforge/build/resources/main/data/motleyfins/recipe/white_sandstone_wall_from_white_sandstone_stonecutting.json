@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "motleyfins:white_sandstone"
+  },
+  "result": {
+    "count": 1,
+    "id": "motleyfins:white_sandstone_wall"
+  }
+}

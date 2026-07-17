@@ -1,0 +1,5 @@
+/locate biome minecraft:warm_ocean
+/tp @s 2981 65 -1620
+/kill @e[type=!minecraft:player]
+/kill @e[type=motleyfins:parrotfish]
+/kill @e[type=!minecraft:player]

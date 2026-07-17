@@ -1,0 +1,12 @@
+com.cosmocat.motleyfins
+com.cosmocat.motleyfins.block
+com.cosmocat.motleyfins.data
+com.cosmocat.motleyfins.entity
+com.cosmocat.motleyfins.entity.animation
+com.cosmocat.motleyfins.entity.model
+com.cosmocat.motleyfins.entity.render
+com.cosmocat.motleyfins.event
+com.cosmocat.motleyfins.item
+com.cosmocat.motleyfins.mixin
+com.cosmocat.motleyfins.particle
+com.cosmocat.motleyfins.sound
