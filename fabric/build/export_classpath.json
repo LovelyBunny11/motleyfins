@@ -2,17 +2,17 @@
   "projectPath": ":fabric",
   "classpaths": {
     "test": [
-      "C:\\Users\\Пользователь\\Desktop\\motleyfins-master\\fabric\\build\\classes\\java\\test",
-      "C:\\Users\\Пользователь\\Desktop\\motleyfins-master\\fabric\\build\\resources\\test",
-      "C:\\Users\\Пользователь\\Desktop\\motleyfins-master\\fabric\\out\\test\\classes",
-      "C:\\Users\\Пользователь\\Desktop\\motleyfins-master\\fabric\\out\\test\\resources"
+      "C:\\Users\\Пользователь\\Documents\\motleyfins\\fabric\\build\\classes\\java\\test",
+      "C:\\Users\\Пользователь\\Documents\\motleyfins\\fabric\\build\\resources\\test",
+      "C:\\Users\\Пользователь\\Documents\\motleyfins\\fabric\\out\\test\\classes",
+      "C:\\Users\\Пользователь\\Documents\\motleyfins\\fabric\\out\\test\\resources"
     ],
     "main": [
-      "C:\\Users\\Пользователь\\Desktop\\motleyfins-master\\fabric\\build\\classes\\java\\main",
-      "C:\\Users\\Пользователь\\Desktop\\motleyfins-master\\fabric\\build\\resources\\main",
-      "C:\\Users\\Пользователь\\Desktop\\motleyfins-master\\fabric\\build\\devlibs\\motleyfins-fabric-1.21.1-1.0.0-dev.jar",
-      "C:\\Users\\Пользователь\\Desktop\\motleyfins-master\\fabric\\out\\production\\classes",
-      "C:\\Users\\Пользователь\\Desktop\\motleyfins-master\\fabric\\out\\production\\resources"
+      "C:\\Users\\Пользователь\\Documents\\motleyfins\\fabric\\build\\classes\\java\\main",
+      "C:\\Users\\Пользователь\\Documents\\motleyfins\\fabric\\build\\resources\\main",
+      "C:\\Users\\Пользователь\\Documents\\motleyfins\\fabric\\build\\devlibs\\motleyfins-fabric-1.21.1-1.0.0-dev.jar",
+      "C:\\Users\\Пользователь\\Documents\\motleyfins\\fabric\\out\\production\\classes",
+      "C:\\Users\\Пользователь\\Documents\\motleyfins\\fabric\\out\\production\\resources"
     ]
   }
 }

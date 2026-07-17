@@ -3,11 +3,11 @@
     "id": "motleyfins",
     "version": "1.0.0",
     "name": "Motley Fins",
-    "description": "A",
+    "description": "Updates aquatic biomes, adding blocks and a new mob!",
     "authors": [
         "CosmoCat"
     ],
-    "license": "CC0-1.0",
+    "license": "ARR",
     "icon": "motleyfins.png",
     "environment": "*",
     "entrypoints": {

@@ -1,6 +1,6 @@
 modLoader = "javafml" 
 loaderVersion = "[1,)" 
-license = "CC0-1.0"
+license = "ARR"
 
 [[mods]] 
 modId = "motleyfins" 
@@ -8,9 +8,9 @@ version = "1.0.0"
 displayName = "Motley Fins" 
 
 logoFile="motleyfins.png"
-credits="A"
+credits="Cucuber_321, _LovelyBunny"
 authors = "CosmoCat"
-description = '''A'''
+description = '''Updates aquatic biomes, adding blocks and a new mob!'''
 
 [[dependencies.motleyfins]]
 modId = "neoforge" 
