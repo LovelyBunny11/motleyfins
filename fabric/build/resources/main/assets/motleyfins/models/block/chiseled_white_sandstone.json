@@ -1,7 +1,0 @@
-{
-  "parent": "minecraft:block/cube_column",
-  "textures": {
-    "end": "motleyfins:block/white_sandstone_top",
-    "side": "motleyfins:block/chiseled_white_sandstone"
-  }
-}

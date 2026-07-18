@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Specification-Title: Motley Fins
-Specification-Vendor: CosmoCat
-Specification-Version: 1.0.0
-Implementation-Title: neoforge
-Implementation-Version: 1.0.0
-Implementation-Vendor: CosmoCat
-Built-On-Minecraft: 1.21.1
-

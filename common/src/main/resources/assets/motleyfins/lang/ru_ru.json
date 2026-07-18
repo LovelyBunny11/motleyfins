@@ -1,0 +1,34 @@
+{
+  "block.motleyfins.white_sand": "Белый песок",
+  "block.motleyfins.white_sandstone": "Белый песчаник",
+  "block.motleyfins.white_sandstone_stairs": "Ступеньки из белого песчаника",
+  "block.motleyfins.white_sandstone_slab": "Плита из белого песчаника",
+  "block.motleyfins.white_sandstone_wall": "Ограда из белого песчаника",
+  "block.motleyfins.chiseled_white_sandstone": "Резной белый песчаник",
+  "block.motleyfins.smooth_white_sandstone": "Гладкий белый песчаник",
+  "block.motleyfins.smooth_white_sandstone_stairs": "Ступеньки из гладкого белого песчаника",
+  "block.motleyfins.smooth_white_sandstone_slab": "Плита из гладкого белого песчаника",
+  "block.motleyfins.cut_white_sandstone": "Пиленый белый песчаник",
+  "block.motleyfins.cut_white_sandstone_slab": "Плита из пиленого белого песчаника",
+
+  "item.motleyfins.parrotfish_bucket": "Рыба-попугай в ведре",
+  "item.motleyfins.parrotfish": "Рыба-попугай",
+  "item.motleyfins.parrotfish_spawn_egg": "Яйцо призыва рыбы-попугая",
+
+  "entity.motleyfins.parrotfish": "Рыба-попугай",
+  "entity.motleyfins.parrotfish.type.red": "Красная",
+  "entity.motleyfins.parrotfish.type.blue": "Синяя",
+  "entity.motleyfins.parrotfish.type.green": "Зелёная",
+  "entity.motleyfins.parrotfish.type.cyan": "Бирюзовая",
+  "entity.motleyfins.parrotfish.type.gray": "Серая",
+  "entity.motleyfins.parrotfish.type.tricolor": "Трёхцветная",
+  "entity.motleyfins.parrotfish.type.yellowtail": "Желтохвостая",
+  "entity.motleyfins.parrotfish.type.stoplight": "Светофорная",
+  "entity.motleyfins.parrotfish.type.redband": "Краснополосая",
+
+  "motleyfins.subtitles.entity.parrotfish.ambient": "Рыба-попугай кричит",
+  "motleyfins.subtitles.entity.parrotfish.eat": "Рыба-попугай ест",
+  "motleyfins.subtitles.entity.parrotfish.flop": "Рыба-попугай плещется",
+  "motleyfins.subtitles.entity.parrotfish.hurt": "Рыба-попугай ранена",
+  "motleyfins.subtitles.entity.parrotfish.death": "Рыба-попугай погибает"
+}
